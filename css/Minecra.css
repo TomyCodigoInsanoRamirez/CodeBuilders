@@ -1,0 +1,28 @@
+.contenedor{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+}
+.Titulo{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.Descripcion{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+img{
+    width: 20em;
+    height: 20em;
+    left: 20em;
+    right: 20em;
+    display: block;
+}
