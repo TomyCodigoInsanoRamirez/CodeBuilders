@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos Registrados</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+    <div class="text-center rounded-3 shadow-lg text-black p-4">
+        <h2>Datos Registrados</h2>
+        <div id="datos-registrados"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Get query parameters
+            const params = new URLSearchParams(window.location.search);
+            const datosRegistrados = document.getElementById('datos-registrados');
+
+            // Extract and display data
+            
+            const datos = `
+                <p><strong>Nombre(s):</strong> ${params.get('Nombre')}</p>
+                <p><strong>Apellido(s):</strong> ${params.get('Apellido')}</p>
+                <p><strong>Correo Electrónico:</strong> ${params.get('Correo')}</p>
+                <p><strong>Número de identificación:</strong> ${params.get('Num_Identificacion')}</p>
+                <p><strong>Teléfono:</strong> ${params.get('Tel')}</p>
+                <p><strong>Rol:</strong> ${params.get('Rol')}</p>
+               
+            `;
+
+            datosRegistrados.innerHTML = datos;
+        });
+    </script>
+</body>
+</html>

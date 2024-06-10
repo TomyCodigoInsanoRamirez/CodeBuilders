@@ -9,26 +9,92 @@
     
 </head>
 <body class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
-   
-        
-    <div  class="text-center rounded-3 p-5 shadow-lg text-black">
-    <form>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">Nunca compartiremos su correo electrónico con nadie más.</div>
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Verificado</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Enviar</button>
-      </form>
-    </div>
-      <script src='js/bootstrap.js'></script>
+  <div  class="align-items-center text-center justify-content-center d-flex ">
+  
+  
+      <!--**************************************************************-->
+      <div  class="text-center rounded-3  shadow-lg text-black d-flex">
+          <div class=" rounded-start  d-flex align-items-center" >
+              <img src="img/Ini-sesion.png" alt="" class="img-fluid rounded mx-auto d-flex align-items-right rounded-start">
+          </div>
+          <!-- *************************************************************-->
+          <div  class="align-items-center text-center justify-content-center d-flex ">
+  
+              <form method="post" action="mostrar.html" id="datos-registrados">
+                  <div class="row">
+                  <div class="col mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Nombre(s): </label>
+                      <input type="text" class="form-control" id="Nombre">
+  
+                  </div>
+                      <div class="col mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Apellido(s): </label>
+                          <input type="text" class="form-control" id="Apellido" >
+  
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Correo Electronico: </label>
+                          <input type="email" class="form-control" id="Correo">
+                      </div>
+                      <div class="col mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Número de identificación: </label>
+                          <input type="number" class="form-control" id="Num_Identificacion">
+  
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Teléfono: </label>
+                          <input type="tel" class="form-control" id="Tel">
+  
+  
+                      </div>
+                      <div class="col mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Rol: </label>
+                          <input type="text" class="form-control" id="Rol" >
+  
+  
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col mb-3">
+                          <label for="exampleInputPassword1" class="form-label">Contraseña: </label>
+                          <input type="password" class="form-control" id="Contra">
+                      </div>
+                      <div class="col mb-3">
+                          <label for="exampleInputPassword1" class="form-label">Repetir contraseña:</label>
+                          <input type="password" class="form-control" id="contra2">
+                      </div>
+                      <br>
+                      <div class="justify-content-center align-items-center d-flex">
+                        <button type="submit" class="btn btn-primary" >Enviar</button>
+                      </div>
+                      
+  
+                  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+              </form>
+          </div>
+  
+      </div>
+  </div>
+
+<script src="js/bootstrap.js"></script>
+<script src="js/registro.js"></script>
 </body>
+
 </html>
