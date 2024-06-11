@@ -7,31 +7,130 @@
     <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
-    <div class="text-center rounded-3 shadow-lg text-black p-4">
+    <div class="container text-center rounded-3 shadow-lg text-black p-4">
         <h2>Datos Registrados</h2>
-        <div id="datos-registrados"></div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nombre(s)</th>
+                    <th>Apellido(s)</th>
+                    <th>Correo Electrónico</th>
+                    <th>Número de identificación</th>
+                    <th>Teléfono</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="datos-registrados">
+                <!-- Los datos se insertarán aquí -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal para editar datos -->
+    <div id="editModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background-color:white; padding:20px; box-shadow:0 0 10px rgba(0,0,0,0.5);">
+        <h2>Modificar Datos</h2>
+        <form id="editForm">
+            <div class="mb-3">
+                <label for="editNombre" class="form-label">Nombre(s):</label>
+                <input type="text" class="form-control" id="editNombre">
+            </div>
+            <div class="mb-3">
+                <label for="editApellido" class="form-label">Apellido(s):</label>
+                <input type="text" class="form-control" id="editApellido">
+            </div>
+            <div class="mb-3">
+                <label for="editCorreo" class="form-label">Correo Electrónico:</label>
+                <input type="email" class="form-control" id="editCorreo">
+            </div>
+            <div class="mb-3">
+                <label for="editNum_Identificacion" class="form-label">Número de identificación:</label>
+                <input type="number" class="form-control" id="editNum_Identificacion">
+            </div>
+            <div class="mb-3">
+                <label for="editTel" class="form-label">Teléfono:</label>
+                <input type="tel" class="form-control" id="editTel">
+            </div>
+            <div class="mb-3">
+                <label for="editRol" class="form-label">Rol:</label>
+                <input type="text" class="form-control" id="editRol">
+            </div>
+            <button type="button" class="btn btn-primary" id="saveChanges">Guardar Cambios</button>
+            <button type="button" class="btn btn-secondary" id="cancelEdit">Cancelar</button>
+        </form>
     </div>
 
     <script>
+        
+        // Esta función se ejecuta cuando la página se ha cargado completamente
         document.addEventListener('DOMContentLoaded', (event) => {
-            // Get query parameters
+            // Obtiene los parámetros de la URL
             const params = new URLSearchParams(window.location.search);
+            // Selecciona el cuerpo de la tabla donde se mostrarán los datos
             const datosRegistrados = document.getElementById('datos-registrados');
 
-            // Extract and display data
-            
-            const datos = `
-                <p><strong>Nombre(s):</strong> ${params.get('Nombre')}</p>
-                <p><strong>Apellido(s):</strong> ${params.get('Apellido')}</p>
-                <p><strong>Correo Electrónico:</strong> ${params.get('Correo')}</p>
-                <p><strong>Número de identificación:</strong> ${params.get('Num_Identificacion')}</p>
-                <p><strong>Teléfono:</strong> ${params.get('Tel')}</p>
-                <p><strong>Rol:</strong> ${params.get('Rol')}</p>
-               
-            `;
+            // Crea una fila de tabla con los datos obtenidos de los parámetros de la URL
+            const row = document.createElement('tr');
 
-            datosRegistrados.innerHTML = datos;
+            // Define los campos de datos que se mostrarán en la tabla
+            const dataFields = ['Nombre', 'Apellido', 'Correo', 'Num_Identificacion', 'Tel', 'Rol'];
+            dataFields.forEach(field => {
+                const td = document.createElement('td');
+                td.textContent = params.get(field);
+                row.appendChild(td);
+            });
+
+            // Crear celdas para las acciones de modificar y eliminar
+            const actionsTd = document.createElement('td');
+
+            // Crear botón de modificar
+            const editBtn = document.createElement('button');
+            editBtn.textContent = 'Modificar';
+            editBtn.classList.add('btn', 'btn-warning', 'm-1');
+            editBtn.onclick = () => showEditModal(row); // Al hacer clic, se muestra el modal de edición
+
+            // Crear botón de eliminar
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Eliminar';
+            deleteBtn.classList.add('btn', 'btn-danger', 'm-1');
+            deleteBtn.onclick = () => row.remove(); // Al hacer clic, se elimina la fila
+
+            // Añadir los botones de acción a la celda correspondiente
+            actionsTd.appendChild(editBtn);
+            actionsTd.appendChild(deleteBtn);
+            row.appendChild(actionsTd);
+
+            // Añadir la fila a la tabla
+            datosRegistrados.appendChild(row);
         });
+
+        // Función para mostrar el modal de edición
+        function showEditModal(row) {
+            const dataFields = ['Nombre', 'Apellido', 'Correo', 'Num_Identificacion', 'Tel', 'Rol'];
+            const modal = document.getElementById('editModal');
+            const editForm = document.getElementById('editForm');
+
+            // Rellenar el formulario con los datos actuales de la fila
+            dataFields.forEach((field, index) => {
+                editForm.elements['edit' + field].value = row.children[index].textContent;
+            });
+
+            // Mostrar el modal
+            modal.style.display = 'block';
+
+            // Manejar la acción de guardar cambios
+            document.getElementById('saveChanges').onclick = () => {
+                dataFields.forEach((field, index) => {
+                    row.children[index].textContent = editForm.elements['edit' + field].value;
+                });
+                modal.style.display = 'none';
+            };
+
+            // Manejar la acción de cancelar
+            document.getElementById('cancelEdit').onclick = () => {
+                modal.style.display = 'none';
+            };
+        }
     </script>
 </body>
 </html>
